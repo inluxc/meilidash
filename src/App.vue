@@ -4,6 +4,26 @@ import Logo from "./components/Logo.vue";
 import IconSearchDocument from "./components/icons/IconSearchDocument.vue";
 import IconSettings from "./components/icons/IconSettings.vue";
 import Config from "./components/config/Index.vue";
+
+// Verify if server is available
+import { callApi } from "@/api/api";
+import { useServerStore } from "@/stores/server";
+const server = useServerStore();
+setInterval(async () => {
+  if (
+    server.getServerData.domain != "" &&
+    server.getServerData.masterkey != ""
+  ) {
+    try {
+      const { client } = await callApi();
+      const version = await client.getVersion();
+      server.setStatus("online");
+      server.setVersion(version.pkgVersion);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+}, 5000);
 </script>
 
 <template>
