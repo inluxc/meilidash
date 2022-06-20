@@ -26,11 +26,6 @@ export const useServerStore = defineStore("server", {
           state.server.masterkey = String(localStorage.getItem("masterkey"));
         }
       }
-      if (state.server.status == "") {
-        if (localStorage.getItem("status") != "") {
-          state.server.status = String(localStorage.getItem("ststus"));
-        }
-      }
       if (state.server.version == "") {
         if (localStorage.getItem("version") != "") {
           state.server.version = String(localStorage.getItem("version"));
@@ -50,19 +45,16 @@ export const useServerStore = defineStore("server", {
     setStatus(status: string) {
       if (status == "online") {
         this.server.status = "online";
-        localStorage.setItem("serverStatus", status);
       } else {
         this.server.status = "offline";
-        localStorage.removeItem("version");
-        localStorage.setItem("serverStatus", status);
       }
     },
     setVersion(version: string) {
       if (version != "") {
-        this.server.status = version;
+        this.server.version = version;
         localStorage.setItem("version", version);
       } else {
-        this.server.status = "d";
+        this.server.version = "";
         localStorage.removeItem("version");
       }
     },
