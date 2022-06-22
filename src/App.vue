@@ -1,9 +1,30 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
 import Logo from "./components/Logo.vue";
-import IconSearchDocument from "./components/icons/IconSearchDocument.vue";
-import IconSettings from "./components/icons/IconSettings.vue";
+import Nav from "./components/header/nav.vue";
 import Config from "./components/config/Index.vue";
+import { RouterView } from "vue-router";
+
+// Verify if server is available
+import { callApi } from "@/api/api";
+import { useServerStore } from "@/stores/server";
+const server = useServerStore();
+setInterval(async () => {
+  if (
+    server.getServerData.domain != "" &&
+    server.getServerData.masterkey != ""
+  ) {
+    try {
+      const { client } = await callApi();
+      const version = await client.getVersion();
+      server.setStatus("online");
+      server.setVersion(version.pkgVersion);
+    } catch (e) {
+      server.setStatus("offline");
+      server.setVersion("");
+      console.log(e);
+    }
+  }
+}, 5000);
 </script>
 
 <template>
@@ -11,12 +32,7 @@ import Config from "./components/config/Index.vue";
     <n-layout>
       <n-layout-header>
         <Logo />
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/search"><IconSearchDocument /> Search</RouterLink>
-          <RouterLink to="/settings"><IconSettings /> Settings</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-        </nav>
+        <Nav />
         <Config />
       </n-layout-header>
       <RouterView :key="$route.fullPath" />

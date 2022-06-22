@@ -16,7 +16,7 @@
         <n-form-item>
           <n-button @click="save()">Save and Test</n-button>
         </n-form-item>
-        <n-form-item path="index" label="Selected Index">
+        <n-form-item path="index" label="Selected Index" v-if="serverStatus">
           <Indexes />
         </n-form-item>
       </n-form>
@@ -24,7 +24,7 @@
   </n-drawer>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, computed } from "vue";
 import type { DrawerPlacement } from "naive-ui";
 import { useMessage } from "naive-ui";
 import { useServerStore } from "@/stores/server";
@@ -53,6 +53,10 @@ export default defineComponent({
       masterkey: "",
     });
 
+    let serverStatus = computed(function () {
+      return server.server.status == "online" ? true : false;
+    });
+
     const message = useMessage();
     onMounted(() => {
       modelRef.value = server.getServerData;
@@ -69,6 +73,7 @@ export default defineComponent({
       placement,
       activate,
       model: modelRef,
+      serverStatus: serverStatus,
     };
   },
 });

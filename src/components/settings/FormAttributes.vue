@@ -147,6 +147,12 @@ export default defineComponent({
       loading: loadingRef,
       dataChanged,
       saveData: saveData,
+      watch: {
+        // whenever question changes, this function will run
+        serverStatus() {
+          return;
+        },
+      },
     };
   },
 });
