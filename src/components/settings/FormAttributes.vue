@@ -5,6 +5,7 @@
       v-model:value="value"
       :loading="loading"
       placeholder="Please type here"
+      show-sort-button
       :min="1"
       :max="100"
     />
