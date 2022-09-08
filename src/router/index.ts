@@ -85,7 +85,6 @@ const router = createRouter({
         {
           path: "typoTolerance",
           name: "typoTolerance",
-          props: { attribute: "typo-tolerance", label: "Typo Tolerance" },
           component: () => import("@/components/settings/TypoTolerance.vue"),
         },
         // ...other sub routes

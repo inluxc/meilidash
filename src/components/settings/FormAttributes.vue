@@ -1,40 +1,58 @@
 <template>
   <h4>{{ title }}</h4>
-  <div v-if="!loading">
+  <div>
     <n-dynamic-input
       v-model:value="value"
-      :loading="loading"
       placeholder="Please type here"
       show-sort-button
       :min="1"
       :max="100"
     />
     <n-form-item>
-      <n-button @click="saveData()" v-if="!dataChanged">Save</n-button>
+      <n-button @click="saveData()" v-if="dataChanged">Save</n-button>
     </n-form-item>
   </div>
-  <div v-if="loading">Loading Data</div>
 </template>
 
 <script lang="ts">
-import type { Synonyms, TypoTolerance } from "meilisearch";
+import type { Synonyms } from "meilisearch";
 import { defineComponent, ref, onMounted, useAttrs } from "vue";
+import { useLoadingBar } from "naive-ui";
 import { callApi } from "@/api/api";
 
 export default defineComponent({
-  setup() {
+  watch: {
+    value: {
+      handler() {
+        this.dataChanged =
+          JSON.stringify(this.value) !== JSON.stringify(this.defaultData);
+      },
+      deep: true,
+    },
+  },
+
+  emits: ["attribute", "label"],
+  props: {
+    attribute: {
+      type: String,
+    },
+    label: {
+      type: String,
+    },
+  },
+  setup(props) {
+    const loadingBar = useLoadingBar();
     const attrs = useAttrs();
     const dataChanged = ref(false);
     const optionsRef = ref([]);
     const optionsDefault = ref([]);
-    const title = attrs.label;
-    const loadingRef = ref(false);
+    const title = props.label?.toString();
 
     const attributeData = async () => {
       const { index } = await callApi();
       let resData = [] as string[];
 
-      switch (attrs.attribute) {
+      switch (props.attribute) {
         case "displayed-attributes": {
           resData = await index.getDisplayedAttributes();
           break;
@@ -120,33 +138,31 @@ export default defineComponent({
           resData = await index.updateStopWords(optionsRef.value);
           break;
         }
-        case "typoTolerance": {
-          let val: TypoTolerance = {};
-          val = optionsRef.value[0];
-          resData = await index.updateTypoTolerance(val);
-          break;
-        }
       }
       return resData;
     };
 
-    /*     const changed = () => {
-      util.isDeepStrictEqual(optionsRef, optionsDefault);
-    }; */
-
     onMounted(async () => {
-      loadingRef.value = true;
+      loading();
       const data = await attributeData();
       optionsRef.value = JSON.parse(data);
       optionsDefault.value = JSON.parse(data);
-      loadingRef.value = false;
+      stopLoading();
     });
+
+    const loading = () => {
+      loadingBar.start();
+    };
+
+    const stopLoading = () => {
+      loadingBar.finish();
+    };
 
     return {
       value: optionsRef,
+      defaultData: optionsDefault,
       title,
-      loading: loadingRef,
-      dataChanged,
+      dataChanged: dataChanged,
       saveData: saveData,
       watch: {
         // whenever question changes, this function will run

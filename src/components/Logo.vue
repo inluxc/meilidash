@@ -1,64 +1,153 @@
 <template>
-  <svg
-    viewBox="0 0 127 74"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
+  <div
     style="
-      width: 75px;
-      padding-top: 11px;
-      padding-bottom: 11px;
-      margin-left: 13px;
+      box-sizing: border-box;
+      display: inline-block;
+      overflow: hidden;
+      width: 60px;
+      height: 35px;
+      background: none;
+      opacity: 1;
+      border: 0;
+      margin: 0;
+      padding: 0;
+      position: relative;
     "
   >
-    <title>Meilisearch</title>
-    <path
-      d="M.825 73.993l23.244-59.47A21.85 21.85 0 0144.42.625h14.014L35.19 60.096a21.85 21.85 0 01-20.352 13.897H.825z"
-      fill="url(#meilisearch_logo_svg__paint0_linear_0_6)"
-    ></path>
-    <path
-      d="M34.925 73.993l23.243-59.47A21.85 21.85 0 0178.52.626h14.013L69.29 60.096a21.85 21.85 0 01-20.351 13.897H34.925z"
-      fill="url(#meilisearch_logo_svg__paint1_linear_0_6)"
-    ></path>
-    <path
-      d="M69.026 73.993l23.244-59.47A21.85 21.85 0 01112.621.626h14.014l-23.244 59.47a21.851 21.851 0 01-20.352 13.897H69.026z"
-      fill="url(#meilisearch_logo_svg__paint2_linear_0_6)"
-    ></path>
-    <defs>
-      <linearGradient
-        id="meilisearch_logo_svg__paint0_linear_0_6"
-        x1="126.635"
-        y1="-4.978"
-        x2="0.825"
-        y2="66.098"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stop-color="#FF5CAA"></stop>
-        <stop offset="1" stop-color="#FF4E62"></stop>
-      </linearGradient>
-      <linearGradient
-        id="meilisearch_logo_svg__paint1_linear_0_6"
-        x1="126.635"
-        y1="-4.978"
-        x2="0.825"
-        y2="66.098"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stop-color="#FF5CAA"></stop>
-        <stop offset="1" stop-color="#FF4E62"></stop>
-      </linearGradient>
-      <linearGradient
-        id="meilisearch_logo_svg__paint2_linear_0_6"
-        x1="126.635"
-        y1="-4.978"
-        x2="0.825"
-        y2="66.098"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stop-color="#FF5CAA"></stop>
-        <stop offset="1" stop-color="#FF4E62"></stop>
-      </linearGradient>
-    </defs>
-  </svg>
+    <img
+      alt="Meilisearch Logo"
+      src="/icons/meili-logo.svg"
+      decoding="async"
+      data-nimg="fixed"
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        box-sizing: border-box;
+        padding: 0;
+        border: none;
+        margin: auto;
+        display: block;
+        width: 0;
+        height: 0;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
+      "
+      srcset="/icons/meili-logo.svg 1x, /icons/meili-logo.svg 2x"
+    /><noscript
+      ><img
+        alt="Meilisearch Logo"
+        srcSet="/icons/meili-logo.svg 1x, /icons/meili-logo.svg 2x"
+        src="/icons/meili-logo.svg"
+        decoding="async"
+        data-nimg="fixed"
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          box-sizing: border-box;
+          padding: 0;
+          border: none;
+          margin: auto;
+          display: block;
+          width: 0;
+          height: 0;
+          min-width: 100%;
+          max-width: 100%;
+          min-height: 100%;
+          max-height: 100%;
+        "
+        loading="lazy"
+    /></noscript>
+  </div>
+  <div
+    style="
+      box-sizing: border-box;
+      display: inline-block;
+      overflow: hidden;
+      height: 35px;
+      background: none;
+      opacity: 1;
+      border: 0;
+      margin: 0 0 0 10px;
+      padding: 4px 0 0 0;
+      position: relative;
+    "
+  >
+    <span
+      style="
+        box-sizing: border-box;
+        display: inline-block;
+        overflow: hidden;
+        width: 164px;
+        height: 25px;
+        background: none;
+        opacity: 1;
+        border: 0;
+        margin: 0;
+        padding: 0;
+        position: relative;
+      "
+      ><img
+        alt="Meilisearch"
+        src="/icons/meilisearch.svg"
+        decoding="async"
+        data-nimg="fixed"
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          box-sizing: border-box;
+          padding: 0;
+          border: none;
+          margin: auto;
+          display: block;
+          width: 0;
+          height: 0;
+          min-width: 100%;
+          max-width: 100%;
+          min-height: 100%;
+          max-height: 100%;
+        "
+        srcset="
+          /icons/meilisearch.svg 1x,
+          /icons/meilisearch.svg 2x
+        " /><noscript
+        ><img
+          alt="Meilisearch"
+          srcSet="/icons/meilisearch.svg 1x, /icons/meilisearch.svg 2x"
+          src="/icons/meilisearch.svg"
+          decoding="async"
+          data-nimg="fixed"
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            box-sizing: border-box;
+            padding: 0;
+            border: none;
+            margin: auto;
+            display: block;
+            width: 0;
+            height: 0;
+            min-width: 100%;
+            max-width: 100%;
+            min-height: 100%;
+            max-height: 100%;
+          "
+          loading="lazy" /></noscript
+    ></span>
+  </div>
 </template>
 <script lang="ts">
 export default {

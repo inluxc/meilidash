@@ -1,5 +1,11 @@
 <template>
-  <n-button @click="activate('right')">Server</n-button>
+  <n-button text @click="activate('right')">
+    <template #icon>
+      <n-icon size="25">
+        <BareMetalServerIcon />
+      </n-icon>
+    </template>
+  </n-button>
   <n-drawer v-model:show="active" :width="502" :placement="placement">
     <n-drawer-content title="Server Data">
       <n-form ref="formRef" :model="model">
@@ -30,11 +36,13 @@ import { useMessage } from "naive-ui";
 import { useServerStore } from "@/stores/server";
 import type { ServerType } from "@/stores/server";
 import Indexes from "@/components/config/Indexes.vue";
+import { BareMetalServer as BareMetalServerIcon } from "@vicons/carbon";
 
 export default defineComponent({
   name: "ServerComponent",
   components: {
     Indexes,
+    BareMetalServerIcon,
   },
   setup() {
     const server = useServerStore();

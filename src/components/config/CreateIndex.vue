@@ -1,6 +1,8 @@
 <template>
   <n-button @click="showModal = true">
-    <IconPlus />
+    <n-icon>
+      <PlusIcon />
+    </n-icon>
   </n-button>
   <n-modal
     v-model:show="showModal"
@@ -39,10 +41,9 @@
 import type { EnqueuedTask } from "meilisearch";
 import { defineComponent, ref } from "vue";
 import { useMessage } from "naive-ui";
-import IconPlus from "../icons/IconPlus.vue";
 import { callApi } from "@/api/api";
 import { checkEndedTask } from "@/helpers/tasks";
-
+import { Add as PlusIcon } from "@vicons/carbon";
 const indexModel = ref({
   uid: "",
   primaryKey: "",
@@ -81,7 +82,7 @@ export default defineComponent({
     "refresh-indexes": null,
   },
   components: {
-    IconPlus,
+    PlusIcon,
   },
   setup() {
     const message = useMessage();

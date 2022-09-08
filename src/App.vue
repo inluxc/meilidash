@@ -1,12 +1,18 @@
 <script setup lang="ts">
-import Logo from "./components/Logo.vue";
-import Nav from "./components/header/nav.vue";
-import Config from "./components/config/Index.vue";
 import { RouterView } from "vue-router";
+import { NIcon } from "naive-ui";
+import {
+  Menu as MenuIcon,
+  OverflowMenuVertical as OverflowMenuVerticalIcon,
+} from "@vicons/carbon";
 
 // Verify if server is available
 import { callApi } from "@/api/api";
 import { useServerStore } from "@/stores/server";
+import Logo from "./components/Logo.vue";
+import Nav from "./components/header/Nav.vue";
+import Config from "./components/config/Index.vue";
+
 const server = useServerStore();
 setInterval(async () => {
   if (
@@ -29,90 +35,46 @@ setInterval(async () => {
 
 <template>
   <n-message-provider>
-    <n-layout>
-      <n-layout-header>
-        <Logo />
-        <Nav />
-        <Config />
-      </n-layout-header>
-      <RouterView :key="$route.fullPath" />
-      <n-layout-footer>Copyright BLABLA</n-layout-footer>
-    </n-layout>
+    <n-space
+      justify="space-between"
+      style="
+        margin: 15px 0;
+        -webkit-box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.11);
+        -moz-box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.11);
+        box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.11);
+        padding: 0 20px;
+      "
+    >
+      <n-button text>
+        <template #icon>
+          <n-icon>
+            <MenuIcon />
+          </n-icon>
+        </template>
+      </n-button>
+      <Logo />
+      <Config />
+    </n-space>
+    <n-space vertical>
+      <n-loading-bar-provider>
+        <n-layout has-sider>
+          <Nav />
+          <n-layout id="content-container">
+            <RouterView :key="$route.fullPath" />
+          </n-layout>
+        </n-layout>
+      </n-loading-bar-provider>
+    </n-space>
   </n-message-provider>
 </template>
 
 <style>
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-
-  font-weight: normal;
+#content-container {
+  padding: 0 20px;
+  min-height: 90.5vh;
 }
 
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-  display: inline;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-nav svg {
-  width: 20px;
-}
-@media (min-width: 1024px) {
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+#content-container h1 {
+  margin-top: 0;
 }
 </style>
