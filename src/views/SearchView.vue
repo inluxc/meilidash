@@ -36,9 +36,4 @@ export default {
 };
 </script>
 
-<style>
-body {
-  font-family: sans-serif;
-  padding: 1em;
-}
-</style>
+<style></style>
