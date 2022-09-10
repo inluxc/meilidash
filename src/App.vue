@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import { NIcon } from "naive-ui";
-import {
-  Menu as MenuIcon,
-  OverflowMenuVertical as OverflowMenuVerticalIcon,
-} from "@vicons/carbon";
+import { Menu as MenuIcon } from "@vicons/carbon";
 
 // Verify if server is available
 import { callApi } from "@/api/api";

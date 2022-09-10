@@ -54,8 +54,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, watch } from "vue";
-import type { TypoTolerance } from "meilisearch";
+import { defineComponent, ref, onMounted } from "vue";
 import { useLoadingBar } from "naive-ui";
 import { callApi } from "@/api/api";
 
@@ -73,7 +72,7 @@ export default defineComponent({
   setup() {
     const loadingBar = useLoadingBar();
     const dataChanged = ref(false);
-    const data: TypoTolerance = {
+    const data = {
       enabled: false,
       minWordSizeForTypos: {
         oneTypo: 0,

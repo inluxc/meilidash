@@ -1,11 +1,10 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-
 import App from "./App.vue";
 import router from "./router";
 import naive from "naive-ui";
 
-import InstantSearch from "vue-instantsearch/vue3/es";
+import InstantSearch from "vue-instantsearch";
 
 const app = createApp(App);
 
