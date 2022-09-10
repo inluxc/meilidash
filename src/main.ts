@@ -4,7 +4,7 @@ import App from "./App.vue";
 import router from "./router";
 import naive from "naive-ui";
 
-import InstantSearch from "vue-instantsearch";
+import InstantSearch from "vue-instantsearch/vue3/es";
 
 const app = createApp(App);
 
